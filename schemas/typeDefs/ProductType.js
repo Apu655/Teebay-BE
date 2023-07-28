@@ -15,6 +15,8 @@ const ProductType = new GraphQLObjectType({
     id: { type: GraphQLInt },
     name: { type: GraphQLString },
     description: { type: GraphQLString },
+    createdBy: { type: GraphQLInt },
+    rentPrice: { type: GraphQLFloat },
     price: { type: GraphQLFloat },
     categories: { type: new GraphQLList(CategoryType) },
   }),
