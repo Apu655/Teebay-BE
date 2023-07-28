@@ -51,12 +51,14 @@ Each lent detail is associated with one product (via product relationship) and o
 
 ## 6. PurchaseDetail
 The PurchaseDetail model represents the details of a product that has been purchased by a user. Each purchase detail is identified by a unique id and is associated with the following attributes:
+
 - id: An auto-incrementing integer that serves as the primary key for the PurchaseDetail model.
 - totalPrice: A float indicating the total price of the purchased product.
   
 Each purchase detail is associated with one product (via product relationship) and one user (via User relationship).
 
 ## 7. SellDetail
+
 The SellDetail model represents the details of a product that has been sold by a user. Each sell detail is identified by a unique id and is associated with the following attributes:
 
 - id: An auto-incrementing integer that serves as the primary key for the SellDetail model.
@@ -64,28 +66,34 @@ The SellDetail model represents the details of a product that has been sold by a
 
 Each sell detail is associated with one product (via product relationship) and one user (via User relationship).
 Relationships
+
 - The database schema defines several relationships between the models:
 - Each User can have multiple RentDetail, LentDetail, PurchaseDetail, and SellDetail.
 - Each Product can belong to multiple Categories.
 - Each Product can have one set of RentDetail, LentDetail, PurchaseDetail, and SellDetail.
 - Each Category can be associated with multiple Product.
+  
 These relationships help establish the connections between users, products, categories, and the various transaction details in the application.
 
 # Features
 ### 1. Login
 Login feature takes two input value email, password and matches the raw data in the database.
+
 example fields: email: string password: string
 
 ### 2. Registration
 User can register using giving necessary information and mutation function createUser handles registration of the user.
+
 example fields: email: string password: string ,firstName: string,lastName: string,
 
 ### 3. Add Product
 User can add product and mutation function addProduct handles and creates a new product.
+
 example fields: id:Int, name:string, description:string, price:Float, categories:[String] ,createdBy:Int, rentPrice: Float
 
 ### 4. Edit Product
 User can edit the existing product and mutation function editProduct takes id and exisiting data to update the values
+
 example fields: id:Int, name:string, description:string, price:Float, categories:[String] ,createdBy:Int, rentPrice: Float
 
 ### 5. Delete Product
