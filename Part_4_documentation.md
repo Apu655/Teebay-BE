@@ -90,13 +90,14 @@ example fields: id:Int, name:string, description:string, price:Float, categories
 
 ### 5. Delete Product
 User can delete the product passing only the user id to mutation deleteProduct.
+example fields: id:int
 
 ### 6. Get Product
 User can get product by product id, by product creator and it can also get all the product using mutation getProductById, getProductByCreator, getAllProduct
 
 ## Limitations
 The server isn't secure and there is no required argument which can cause error if wrong values are passed.
-example fields: id:Int
+
 
 
 
