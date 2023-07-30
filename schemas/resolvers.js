@@ -80,7 +80,7 @@ const Mutation = new GraphQLObjectType({
         id: { type: GraphQLInt },
         name: { type: GraphQLString },
         description: { type: GraphQLString },
-        price: { type: GraphQLInt },
+        price: { type: GraphQLFloat },
         rentPrice: { type: GraphQLFloat },
         categories: { type: new GraphQLList(GraphQLString) },
       },
