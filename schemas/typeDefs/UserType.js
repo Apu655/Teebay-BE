@@ -21,6 +21,8 @@ const UserType = new GraphQLObjectType({
     password: { type: GraphQLString },
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
+    address: { type: GraphQLString },
+    phoneNumber: { type: GraphQLString },
     rentList: { type: new GraphQLList(require("./RentType")) },
     LentDetail: { type: new GraphQLList(require("./SellType")) },
     PurchaseDetail: { type: new GraphQLList(require("./PurchaseType")) },

@@ -1,4 +1,5 @@
 const Product = require("./product.model");
 const User = require("./users.model");
-
-module.exports = { Product, User };
+const Purchase = require("./purchase.model");
+const Rent = require("./rent.model");
+module.exports = { Product, User, Purchase, Rent };

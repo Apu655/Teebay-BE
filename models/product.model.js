@@ -5,6 +5,7 @@ const Product = {
     const products = await prisma.product.findMany({
       include: { categories: true },
     });
+    console.log(products);
     return products;
   },
   getProductByCreator: async ({ id }) => {
@@ -16,7 +17,7 @@ const Product = {
         categories: true,
       },
     });
-
+    console.log(products);
     return products;
   },
   getProductById: async ({ id }) => {
@@ -27,6 +28,7 @@ const Product = {
         categories: {
           select: {
             id: true,
+            name:true
           },
         },
       },

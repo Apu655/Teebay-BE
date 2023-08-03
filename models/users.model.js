@@ -33,6 +33,63 @@ const User = {
       return "Some error has occured";
     }
   },
+  getUserDetails: async ({ id }) => {
+    try {
+      const userDetails = await prisma.user.findUnique({
+        where: { id: id },
+        include: {
+          rentList: {
+            select: {
+              id: true,
+              productId: true,
+              product: {
+                include: {
+                  categories: true,
+                },
+              },
+            },
+          },
+          LentDetail: {
+            select: {
+              id: true,
+              productId: true,
+              product: {
+                include: {
+                  categories: true,
+                },
+              },
+            },
+          },
+          PurchaseDetail: {
+            select: {
+              id: true,
+              productId: true,
+              product: {
+                include: {
+                  categories: true,
+                },
+              },
+            },
+          },
+          SellDetail: {
+            select: {
+              id: true,
+              productId: true,
+              product: {
+                include: {
+                  categories: true,
+                },
+              },
+            },
+          },
+        },
+      });
+      console.log(userDetails);
+      return userDetails;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 module.exports = User;

@@ -8,8 +8,14 @@ const {
   GraphQLFloat,
 } = graphql;
 
-const { Product, User } = require("../models");
-const { ProductType, UserType, CategoryType } = require("./typeDefs");
+const { Product, User, Purchase, Rent } = require("../models");
+const {
+  ProductType,
+  UserType,
+  CategoryType,
+  PurchaseType,
+  RentType,
+} = require("./typeDefs");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -55,6 +61,16 @@ const RootQuery = new GraphQLObjectType({
         return Product.getProductById(args);
       },
     },
+    getUserDetails: {
+      type: UserType,
+      args: {
+        id: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        console.log("ARGS for user details", args);
+        return User.getUserDetails(args);
+      },
+    },
   },
 });
 const Mutation = new GraphQLObjectType({
@@ -67,6 +83,7 @@ const Mutation = new GraphQLObjectType({
         description: { type: GraphQLString },
         price: { type: GraphQLFloat },
         rentPrice: { type: GraphQLFloat },
+        rentType: { type: GraphQLString },
         createdBy: { type: GraphQLInt },
         categories: { type: new GraphQLList(GraphQLString) },
       },
@@ -81,11 +98,11 @@ const Mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         description: { type: GraphQLString },
         price: { type: GraphQLFloat },
+        rentType: { type: GraphQLString },
         rentPrice: { type: GraphQLFloat },
         categories: { type: new GraphQLList(GraphQLString) },
       },
       resolve(parent, args) {
-        console.log("Update ARGS:", args);
         return Product.editProduct(args);
       },
     },
@@ -96,6 +113,29 @@ const Mutation = new GraphQLObjectType({
         return Product.deleteProduct(args.id);
       },
     },
+    buyProduct: {
+      type: PurchaseType,
+      args: {
+        productId: { type: GraphQLInt },
+        userId: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return Purchase.buyProduct(args);
+      },
+    },
+    rentProduct: {
+      type: RentType,
+      args: {
+        productId: { type: GraphQLInt },
+        userId: { type: GraphQLInt },
+        startDate: { type: GraphQLString },
+        endDate: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        console.log(args);
+        return Rent.rentProduct(args);
+      },
+    },
     createUser: {
       type: UserType,
       args: {
@@ -103,6 +143,8 @@ const Mutation = new GraphQLObjectType({
         password: { type: GraphQLString },
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
+        address: { type: GraphQLString },
+        phoneNumber: { type: GraphQLString },
       },
       resolve(parent, args) {
         return User.createUser(args);

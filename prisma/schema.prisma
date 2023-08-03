@@ -13,6 +13,8 @@ model User {
   password       String
   firstName      String?
   lastName       String?
+  phoneNumber    String?
+  address        String?
   rentList       RentDetail[]
   LentDetail     LentDetail[]
   PurchaseDetail PurchaseDetail[]
@@ -26,9 +28,12 @@ model Product {
   price          Float?
   createdBy      Int?
   rentPrice      Float?
+  rentType       String?
+  createdAt      DateTime?       @default(now())
+  views          Int?
   categories     Category[]
-  RentDetail     RentDetail?
-  LentDetail     LentDetail?
+  RentDetail     RentDetail[]
+  LentDetail     LentDetail[]
   PurchaseDetail PurchaseDetail?
   SellDetail     SellDetail?
 }
@@ -45,7 +50,7 @@ model RentDetail {
   endDate    DateTime
   totalPrice Float?
   product    Product? @relation(fields: [productId], references: [id])
-  productId  Int?     @unique
+  productId  Int?
 
   User   User? @relation(fields: [userId], references: [id])
   userId Int?
@@ -55,29 +60,27 @@ model LentDetail {
   id         Int      @id @default(autoincrement())
   startDate  DateTime
   endDate    DateTime
-  totalPrice Float
+  totalPrice Float?
   product    Product? @relation(fields: [productId], references: [id])
-  productId  Int?     @unique
+  productId  Int?
 
   User   User? @relation(fields: [userId], references: [id])
   userId Int?
 }
 
 model PurchaseDetail {
-  id         Int      @id @default(autoincrement())
-  totalPrice Float
-  product    Product? @relation(fields: [productId], references: [id])
-  productId  Int?     @unique
+  id        Int      @id @default(autoincrement())
+  product   Product? @relation(fields: [productId], references: [id])
+  productId Int?     @unique
 
   User   User? @relation(fields: [userId], references: [id])
   userId Int?
 }
 
 model SellDetail {
-  id         Int      @id @default(autoincrement())
-  totalPrice Float
-  product    Product? @relation(fields: [productId], references: [id])
-  productId  Int?     @unique
+  id        Int      @id @default(autoincrement())
+  product   Product? @relation(fields: [productId], references: [id])
+  productId Int?     @unique
 
   User   User? @relation(fields: [userId], references: [id])
   userId Int?
