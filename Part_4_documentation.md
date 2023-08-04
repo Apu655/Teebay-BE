@@ -104,6 +104,9 @@ example fields: id: int
 ### 6. Get Product
 User can get product by product id, by product creator and it can also get all the product using mutation getProductById, getProductByCreator, getAllProduct
 
+## Corner Cases
+I have checked all the rent period timing so that it if the rent timing clashes then it won't let the user rent. Though errors messages were not provided.
+
 ## Limitations
 The server isn't secure and there is no required argument which can cause error if wrong values are passed.
 
