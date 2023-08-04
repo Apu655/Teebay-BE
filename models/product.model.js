@@ -28,7 +28,7 @@ const Product = {
         categories: {
           select: {
             id: true,
-            name:true
+            name: true,
           },
         },
       },
@@ -61,7 +61,7 @@ const Product = {
         data: {
           ...productData,
           categories: {
-            connect: categories.map((id) => ({
+            set: categories.map((id) => ({
               id: parseInt(id),
             })),
           },
